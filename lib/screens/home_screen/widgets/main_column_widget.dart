@@ -1,4 +1,5 @@
 import 'package:filmflex/screens/home_screen/widgets/carousel_widget.dart';
+import 'package:filmflex/screens/reservation_screen/reservationscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel/flutter_custom_carousel.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -33,9 +34,12 @@ class _MainColumnState extends State<MainColumn> {
             SizedBox(
                 width: MediaQuery.sizeOf(context).width / 2,
                 height: 150,
-                child: Image.asset(
-                  'lib/assets/${moviesData[_homecontroller.selectedIndex.value]["title"]}',
-                  fit: BoxFit.fitWidth,
+                child: Hero(
+                  tag: "title",
+                  child: Image.asset(
+                    'lib/assets/${moviesData[_homecontroller.selectedIndex.value]["title"]}',
+                    fit: BoxFit.fitWidth,
+                  ),
                 )),
             Expanded(
                 child: SizedBox(
@@ -140,23 +144,33 @@ class _MainColumnState extends State<MainColumn> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 32, top: 16),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF4CB1BE),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
-                          child: Text(
-                            'Buy Ticket',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                    InkWell(
+                      onTap: () {
+                        Get.to(
+                            ReservationPage(
+                              index: _homecontroller.selectedIndex.value,
+                            ),
+                            curve: Curves.easeIn,transition: Transition.circularReveal,
+                            duration: const Duration(milliseconds: 700));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 32, top: 16),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 12),
+                          decoration: BoxDecoration(
+                            color:   Colors.orange.shade600,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.fromLTRB(35, 0, 35, 0),
+                            child: Text(
+                              'Buy Ticket',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

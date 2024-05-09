@@ -33,7 +33,7 @@ List moviesData = [
     "Name": "Mufasa",
     "Image": "mufasa.png",
     "title": "title_mufasa.png",
-    "bgColor": Colors.black,
+    "bgColor": Color.fromARGB(255, 73, 46, 11),
         "Genres":["Animation","Adventure","Drama"]
   },
 ];
